@@ -115,6 +115,20 @@
       cursor: pointer;
     }
 
+    .cores-opcoes {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cor-bolinha {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 2px solid white;
+      cursor: pointer;
+    }
+
     footer {
       margin-top: 30px;
       font-size: 12px;
@@ -156,6 +170,7 @@
     <div id="painel-edicao" class="painel-edicao">
       <input id="input-nome" placeholder="Nome">
       <input id="input-foto" placeholder="URL da foto">
+      <input type="file" id="upload-foto" accept="image/*">
       <textarea id="input-bio" placeholder="Biografia"></textarea>
       <textarea id="input-aviso" placeholder="Aviso"></textarea>
       <input id="input-instagram" placeholder="Link do Instagram">
@@ -164,7 +179,17 @@
       <input id="input-facebook" placeholder="Link do Facebook">
       <input id="input-youtube" placeholder="Link do YouTube">
       <input id="input-fundo" placeholder="URL da imagem de fundo">
-      <input id="input-cor" placeholder="Cor principal (hex)">
+      <input type="file" id="upload-fundo" accept="image/*">
+
+      <div class="cores-opcoes">
+        <div class="cor-bolinha" style="background-color: #ff69b4;" onclick="trocarCor('#ff69b4')"></div>
+        <div class="cor-bolinha" style="background-color: #00bfff;" onclick="trocarCor('#00bfff')"></div>
+        <div class="cor-bolinha" style="background-color: #8a2be2;" onclick="trocarCor('#8a2be2')"></div>
+        <div class="cor-bolinha" style="background-color: #32cd32;" onclick="trocarCor('#32cd32')"></div>
+        <div class="cor-bolinha" style="background-color: #ffd700;" onclick="trocarCor('#ffd700')"></div>
+        <div class="cor-bolinha" style="background-color: #000000;" onclick="trocarCor('#000000')"></div>
+      </div>
+
       <button onclick="atualizarDados()">Salvar Alterações</button>
     </div>
 
@@ -193,9 +218,31 @@
       }
     }
 
+    document.getElementById('upload-foto').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        document.getElementById('perfil').src = url;
+      }
+    });
+
+    document.getElementById('upload-fundo').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        document.documentElement.style.setProperty('--imagem-fundo', `url('${url}')`);
+      }
+    });
+
+    function trocarCor(cor) {
+      document.documentElement.style.setProperty('--cor-principal', cor);
+      document.getElementById('input-cor').value = cor;
+    }
+
     function atualizarDados() {
       document.getElementById('nome').innerText = document.getElementById('input-nome').value;
-      document.getElementById('perfil').src = document.getElementById('input-foto').value;
+      const urlFoto = document.getElementById('input-foto').value;
+      if (urlFoto) document.getElementById('perfil').src = urlFoto;
       document.getElementById('bio').innerText = document.getElementById('input-bio').value;
       document.getElementById('aviso').innerText = document.getElementById('input-aviso').value;
       document.getElementById('link-instagram').href = document.getElementById('input-instagram').value;
@@ -203,11 +250,10 @@
       document.getElementById('link-spotify').href = document.getElementById('input-spotify').value;
       document.getElementById('link-facebook').href = document.getElementById('input-facebook').value;
       document.getElementById('link-youtube').href = document.getElementById('input-youtube').value;
-
-      // Atualiza fundo e cor principal
       document.documentElement.style.setProperty('--imagem-fundo', `url('${document.getElementById('input-fundo').value}')`);
       document.documentElement.style.setProperty('--cor-principal', document.getElementById('input-cor').value);
     }
   </script>
 </body>
 </html>
+
