@@ -154,10 +154,10 @@
     </div>
     <div class="links" id="links">
       <a id="link-instagram" href="https://instagram.com/seuusuario" target="_blank">Instagram</a>
-      <a id="link-tiktok" href="https://tiktok.com/@seuusuario" target="_blank">TikTok</a>
-      <a id="link-spotify" href="https://spotify.com/seuusuario" target="_blank">Spotify</a>
       <a id="link-facebook" href="https://facebook.com/seuusuario" target="_blank">Facebook</a>
+      <a id="link-tiktok" href="https://tiktok.com/@seuusuario" target="_blank">TikTok</a>
       <a id="link-youtube" href="https://youtube.com/seucanal" target="_blank">YouTube</a>
+      <a id="link-spotify" href="https://spotify.com/seuusuario" target="_blank">Spotify</a>
     </div>
 
     <div id="login-form" class="login-form">
@@ -174,10 +174,10 @@
       <textarea id="input-bio" placeholder="Biografia"></textarea>
       <textarea id="input-aviso" placeholder="Aviso"></textarea>
       <input id="input-instagram" placeholder="Link do Instagram">
-      <input id="input-tiktok" placeholder="Link do TikTok">
-      <input id="input-spotify" placeholder="Link do Spotify">
       <input id="input-facebook" placeholder="Link do Facebook">
+      <input id="input-tiktok" placeholder="Link do TikTok">
       <input id="input-youtube" placeholder="Link do YouTube">
+      <input id="input-spotify" placeholder="Link do Spotify">
       <input id="input-fundo" placeholder="URL da imagem de fundo (opcional)">
       <input type="file" id="upload-fundo" accept="image/*">
       <input id="input-cor" placeholder="Cor principal (hex)">
@@ -240,10 +240,10 @@
       document.getElementById('bio').innerText = document.getElementById('input-bio').value;
       document.getElementById('aviso').innerText = document.getElementById('input-aviso').value;
       document.getElementById('link-instagram').href = document.getElementById('input-instagram').value;
-      document.getElementById('link-tiktok').href = document.getElementById('input-tiktok').value;
-      document.getElementById('link-spotify').href = document.getElementById('input-spotify').value;
       document.getElementById('link-facebook').href = document.getElementById('input-facebook').value;
+      document.getElementById('link-tiktok').href = document.getElementById('input-tiktok').value;
       document.getElementById('link-youtube').href = document.getElementById('input-youtube').value;
+      document.getElementById('link-spotify').href = document.getElementById('input-spotify').value;
       const cor = document.getElementById('input-cor').value;
       if (cor) document.documentElement.style.setProperty('--cor-principal', cor);
       const fundoURL = document.getElementById('input-fundo').value;
@@ -257,3 +257,4 @@
   </script>
 </body>
 </html>
+
