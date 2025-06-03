@@ -1,5 +1,5 @@
 # link-unico-beat
-Página de perfil com links de redes sociais, avisos e bio.
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -81,7 +81,7 @@ Página de perfil com links de redes sociais, avisos e bio.
     <img src="https://via.placeholder.com/120" alt="Sua foto de perfil" />
 
     <!-- Nome e bio -->
-    <h1>Andreza Barbosa</h1>
+    <h1>Beat Lee</h1>
     <p class="bio">Criadora de conteúdo, artista e empreendedora. Aqui você encontra meus links, lançamentos e novidades 🌟</p>
 
     <!-- Botões de links -->
