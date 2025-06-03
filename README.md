@@ -169,7 +169,7 @@
 
     <div id="painel-edicao" class="painel-edicao">
       <input id="input-nome" placeholder="Nome">
-      <input id="input-foto" placeholder="URL da foto">
+      <input id="input-foto" placeholder="URL da foto (opcional)">
       <input type="file" id="upload-foto" accept="image/*">
       <textarea id="input-bio" placeholder="Biografia"></textarea>
       <textarea id="input-aviso" placeholder="Aviso"></textarea>
@@ -178,18 +178,17 @@
       <input id="input-spotify" placeholder="Link do Spotify">
       <input id="input-facebook" placeholder="Link do Facebook">
       <input id="input-youtube" placeholder="Link do YouTube">
-      <input id="input-fundo" placeholder="URL da imagem de fundo">
+      <input id="input-fundo" placeholder="URL da imagem de fundo (opcional)">
       <input type="file" id="upload-fundo" accept="image/*">
-
+      <input id="input-cor" placeholder="Cor principal (hex)">
       <div class="cores-opcoes">
-        <div class="cor-bolinha" style="background-color: #ff69b4;" onclick="trocarCor('#ff69b4')"></div>
-        <div class="cor-bolinha" style="background-color: #00bfff;" onclick="trocarCor('#00bfff')"></div>
-        <div class="cor-bolinha" style="background-color: #8a2be2;" onclick="trocarCor('#8a2be2')"></div>
-        <div class="cor-bolinha" style="background-color: #32cd32;" onclick="trocarCor('#32cd32')"></div>
-        <div class="cor-bolinha" style="background-color: #ffd700;" onclick="trocarCor('#ffd700')"></div>
-        <div class="cor-bolinha" style="background-color: #000000;" onclick="trocarCor('#000000')"></div>
+        <div class="cor-bolinha" style="background-color: #ff69b4;" onclick="setCor('#ff69b4')"></div>
+        <div class="cor-bolinha" style="background-color: #3498db;" onclick="setCor('#3498db')"></div>
+        <div class="cor-bolinha" style="background-color: #2ecc71;" onclick="setCor('#2ecc71')"></div>
+        <div class="cor-bolinha" style="background-color: #e74c3c;" onclick="setCor('#e74c3c')"></div>
+        <div class="cor-bolinha" style="background-color: #f1c40f;" onclick="setCor('#f1c40f')"></div>
+        <div class="cor-bolinha" style="background-color: #9b59b6;" onclick="setCor('#9b59b6')"></div>
       </div>
-
       <button onclick="atualizarDados()">Salvar Alterações</button>
     </div>
 
@@ -234,11 +233,6 @@
       }
     });
 
-    function trocarCor(cor) {
-      document.documentElement.style.setProperty('--cor-principal', cor);
-      document.getElementById('input-cor').value = cor;
-    }
-
     function atualizarDados() {
       document.getElementById('nome').innerText = document.getElementById('input-nome').value;
       const urlFoto = document.getElementById('input-foto').value;
@@ -250,10 +244,16 @@
       document.getElementById('link-spotify').href = document.getElementById('input-spotify').value;
       document.getElementById('link-facebook').href = document.getElementById('input-facebook').value;
       document.getElementById('link-youtube').href = document.getElementById('input-youtube').value;
-      document.documentElement.style.setProperty('--imagem-fundo', `url('${document.getElementById('input-fundo').value}')`);
-      document.documentElement.style.setProperty('--cor-principal', document.getElementById('input-cor').value);
+      const cor = document.getElementById('input-cor').value;
+      if (cor) document.documentElement.style.setProperty('--cor-principal', cor);
+      const fundoURL = document.getElementById('input-fundo').value;
+      if (fundoURL) document.documentElement.style.setProperty('--imagem-fundo', `url('${fundoURL}')`);
+    }
+
+    function setCor(cor) {
+      document.documentElement.style.setProperty('--cor-principal', cor);
+      document.getElementById('input-cor').value = cor;
     }
   </script>
 </body>
 </html>
-
