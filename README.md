@@ -1,260 +1,182 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Link Único Beat</title>
-  <style>
-    :root {
-      --cor-principal: #ff69b4;
-      --imagem-fundo: url('https://exemplo.com/sua-imagem.jpg');
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Painel Admin Teste</title>
+<style>
+  :root {
+    --cor-principal: #000000;
+    --cor-bio: #000000;
+    --imagem-fundo: none;
+  }
+  body {
+    background: var(--imagem-fundo) no-repeat center center fixed;
+    background-size: cover;
+    color: var(--cor-principal);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  #pagina-principal {
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+    padding: 15px;
+    border: 2px solid var(--cor-principal);
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  #pagina-principal img {
+    display: block;
+    margin: 10px 0;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  #pagina-principal h2 {
+    margin-bottom: 5px;
+  }
+  #pagina-principal p {
+    margin: 5px 0;
+  }
+  #bio {
+    color: var(--cor-bio);
+  }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--imagem-fundo) no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .container {
-      background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    .foto-perfil {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--cor-principal);
-    }
-
-    h1 {
-      margin-top: 10px;
-      color: var(--cor-principal);
-    }
-
-    .bio {
-      margin: 15px 0;
-    }
-
-    .aviso {
-      background-color: var(--cor-principal);
-      padding: 10px;
-      border-radius: 10px;
-      margin: 20px 0;
-      font-weight: bold;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .links a {
-      background-color: var(--cor-principal);
-      color: #fff;
-      text-decoration: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .links a:hover {
-      background-color: #fff;
-      color: var(--cor-principal);
-    }
-
-    .menu-admin {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      padding: 10px;
-      cursor: pointer;
-    }
-
-    .barras {
-      width: 25px;
-      height: 3px;
-      background-color: var(--cor-principal);
-      margin: 4px 0;
-    }
-
-    .login-form, .painel-edicao {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-      text-align: left;
-    }
-
-    .login-form input, .painel-edicao input, .painel-edicao textarea {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-    }
-
-    .login-form button, .painel-edicao button {
-      background-color: var(--cor-principal);
-      color: white;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .cores-opcoes {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .cor-bolinha {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      border: 2px solid white;
-      cursor: pointer;
-    }
-
-    footer {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #ccc;
-    }
-  </style>
+  #painel {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid var(--cor-principal);
+    border-radius: 8px;
+    background: #eee;
+  }
+  #painel h3 {
+    margin-top: 0;
+  }
+  #painel label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  #painel input[type="text"],
+  #painel textarea,
+  #painel input[type="color"] {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  #painel textarea {
+    resize: vertical;
+  }
+  #painel button {
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  #painel button:hover {
+    opacity: 0.9;
+  }
+</style>
 </head>
 <body>
-  <div class="menu-admin" onclick="toggleLogin()">
-    <div class="barras"></div>
-    <div class="barras"></div>
-    <div class="barras"></div>
-    <div style="font-size: 12px; color: white; margin-top: 5px;">Login do Administrador</div>
-  </div>
 
-  <div class="container">
-    <img id="perfil" class="foto-perfil" src="https://exemplo.com/foto-perfil.jpg" alt="Foto de perfil">
-    <h1 id="nome">Beat Lee</h1>
-    <p class="bio" id="bio">22 anos | Criador de conteúdo, artista e empreendedor. Aqui você encontra todos os meus links, novidades e lançamentos!</p>
-    <div class="aviso" id="aviso">
-      🚨 Live especial no TikTok dia 10/06 às 20h!<br>
-      🎧 Nova playlist no Spotify!
-    </div>
-    <div class="links" id="links">
-      <a id="link-instagram" href="https://instagram.com/seuusuario" target="_blank">Instagram</a>
-      <a id="link-facebook" href="https://facebook.com/seuusuario" target="_blank">Facebook</a>
-      <a id="link-tiktok" href="https://tiktok.com/@seuusuario" target="_blank">TikTok</a>
-      <a id="link-youtube" href="https://youtube.com/seucanal" target="_blank">YouTube</a>
-      <a id="link-spotify" href="https://spotify.com/seuusuario" target="_blank">Spotify</a>
-    </div>
+<div id="pagina-principal">
+  <h2 id="nome">Seu Nome Aqui</h2>
+  <img id="perfil" src="https://via.placeholder.com/150" alt="Foto Perfil" />
+  <p id="bio">Essa é a biografia padrão, que não pode ficar em branco.</p>
+  <p id="aviso">Avisos aparecerão aqui.</p>
+</div>
 
-    <div id="login-form" class="login-form">
-      <input type="text" id="usuario" placeholder="Usuário">
-      <input type="password" id="senha" placeholder="Senha">
-      <button onclick="logar()">Entrar</button>
-      <div id="mensagem"></div>
-    </div>
+<div id="painel">
+  <h3>Painel Administrativo</h3>
 
-    <div id="painel-edicao" class="painel-edicao">
-      <input id="input-nome" placeholder="Nome">
-      <input id="input-foto" placeholder="URL da foto (opcional)">
-      <input type="file" id="upload-foto" accept="image/*">
-      <textarea id="input-bio" placeholder="Biografia"></textarea>
-      <textarea id="input-aviso" placeholder="Aviso"></textarea>
-      <input id="input-instagram" placeholder="Link do Instagram">
-      <input id="input-facebook" placeholder="Link do Facebook">
-      <input id="input-tiktok" placeholder="Link do TikTok">
-      <input id="input-youtube" placeholder="Link do YouTube">
-      <input id="input-spotify" placeholder="Link do Spotify">
-      <input id="input-fundo" placeholder="URL da imagem de fundo (opcional)">
-      <input type="file" id="upload-fundo" accept="image/*">
-      <input id="input-cor" placeholder="Cor principal (hex)">
-      <div class="cores-opcoes">
-        <div class="cor-bolinha" style="background-color: #ff69b4;" onclick="setCor('#ff69b4')"></div>
-        <div class="cor-bolinha" style="background-color: #3498db;" onclick="setCor('#3498db')"></div>
-        <div class="cor-bolinha" style="background-color: #2ecc71;" onclick="setCor('#2ecc71')"></div>
-        <div class="cor-bolinha" style="background-color: #e74c3c;" onclick="setCor('#e74c3c')"></div>
-        <div class="cor-bolinha" style="background-color: #f1c40f;" onclick="setCor('#f1c40f')"></div>
-        <div class="cor-bolinha" style="background-color: #9b59b6;" onclick="setCor('#9b59b6')"></div>
-      </div>
-      <button onclick="atualizarDados()">Salvar Alterações</button>
-    </div>
+  <label for="input-nome">Nome:</label>
+  <input type="text" id="input-nome" placeholder="Digite o nome" />
 
-    <footer>
-      © 2025 • Feito com 💖 por você
-    </footer>
-  </div>
+  <label for="input-foto">Foto (URL):</label>
+  <input type="text" id="input-foto" placeholder="Cole a URL da foto" />
 
-  <script>
-    function toggleLogin() {
-      const form = document.getElementById('login-form');
-      form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
+  <label for="input-bio">Biografia:</label>
+  <textarea id="input-bio" rows="3" placeholder="Digite a biografia"></textarea>
+
+  <label for="input-cor-bio">Cor da Biografia:</label>
+  <input type="color" id="input-cor-bio" value="#000000" />
+
+  <label for="input-aviso">Aviso:</label>
+  <input type="text" id="input-aviso" placeholder="Digite um aviso" />
+
+  <label for="input-cor">Cor do painel:</label>
+  <input type="color" id="input-cor" value="#000000" />
+
+  <label for="input-fundo">Imagem de Fundo (URL):</label>
+  <input type="text" id="input-fundo" placeholder="Cole a URL da imagem de fundo" />
+
+  <button onclick="atualizarDados()">Salvar e Atualizar</button>
+</div>
+
+<script>
+  window.onload = () => {
+    // Inicializa os inputs com os dados da página
+    document.getElementById('input-nome').value = document.getElementById('nome').innerText;
+    document.getElementById('input-bio').value = document.getElementById('bio').innerText;
+    document.getElementById('input-aviso').value = document.getElementById('aviso').innerText;
+    document.getElementById('input-cor').value = '#000000';
+    document.getElementById('input-cor-bio').value = '#000000';
+  };
+
+  function atualizarDados() {
+    // Nome
+    const nomeValor = document.getElementById('input-nome').value.trim();
+    if (nomeValor) {
+      document.getElementById('nome').innerText = nomeValor;
     }
 
-    function logar() {
-      const usuario = document.getElementById('usuario').value;
-      const senha = document.getElementById('senha').value;
-      const mensagem = document.getElementById('mensagem');
-
-      if (usuario === 'Beat Lee' && senha === '11.11.2005') {
-        mensagem.innerHTML = '<p style="color:lightgreen">Acesso liberado!</p>';
-        document.getElementById('painel-edicao').style.display = 'flex';
-        document.getElementById('login-form').style.display = 'none';
-      } else {
-        mensagem.innerHTML = '<p style="color:red">Usuário ou senha incorretos!</p>';
-      }
+    // Foto
+    const urlFoto = document.getElementById('input-foto').value.trim();
+    if (urlFoto) {
+      document.getElementById('perfil').src = urlFoto;
     }
 
-    document.getElementById('upload-foto').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        document.getElementById('perfil').src = url;
-      }
-    });
-
-    document.getElementById('upload-fundo').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const url = URL.createObjectURL(file);
-        document.documentElement.style.setProperty('--imagem-fundo', `url('${url}')`);
-      }
-    });
-
-    function atualizarDados() {
-      document.getElementById('nome').innerText = document.getElementById('input-nome').value;
-      const urlFoto = document.getElementById('input-foto').value;
-      if (urlFoto) document.getElementById('perfil').src = urlFoto;
-      document.getElementById('bio').innerText = document.getElementById('input-bio').value;
-      document.getElementById('aviso').innerText = document.getElementById('input-aviso').value;
-      document.getElementById('link-instagram').href = document.getElementById('input-instagram').value;
-      document.getElementById('link-facebook').href = document.getElementById('input-facebook').value;
-      document.getElementById('link-tiktok').href = document.getElementById('input-tiktok').value;
-      document.getElementById('link-youtube').href = document.getElementById('input-youtube').value;
-      document.getElementById('link-spotify').href = document.getElementById('input-spotify').value;
-      const cor = document.getElementById('input-cor').value;
-      if (cor) document.documentElement.style.setProperty('--cor-principal', cor);
-      const fundoURL = document.getElementById('input-fundo').value;
-      if (fundoURL) document.documentElement.style.setProperty('--imagem-fundo', `url('${fundoURL}')`);
+    // Biografia (não pode ficar vazia)
+    const bioValor = document.getElementById('input-bio').value.trim();
+    if (bioValor) {
+      document.getElementById('bio').innerText = bioValor;
     }
 
-    function setCor(cor) {
+    // Cor da Biografia
+    const corBio = document.getElementById('input-cor-bio').value;
+    if (corBio) {
+      document.documentElement.style.setProperty('--cor-bio', corBio);
+    }
+
+    // Aviso (pode ficar vazio)
+    const avisoValor = document.getElementById('input-aviso').value.trim();
+    document.getElementById('aviso').innerText = avisoValor;
+
+    // Cor do painel
+    const cor = document.getElementById('input-cor').value;
+    if (cor) {
       document.documentElement.style.setProperty('--cor-principal', cor);
-      document.getElementById('input-cor').value = cor;
     }
-  </script>
+
+    // Imagem de fundo
+    const fundoURL = document.getElementById('input-fundo').value.trim();
+    if (fundoURL) {
+      document.documentElement.style.setProperty('--imagem-fundo', `url('${fundoURL}')`);
+    } else {
+      document.documentElement.style.setProperty('--imagem-fundo', 'none');
+    }
+  }
+</script>
+
 </body>
 </html>
-
